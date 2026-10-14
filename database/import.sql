@@ -44,7 +44,7 @@ CREATE TABLE `admin` (
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` VALUES
-(1,'admin@admin.com','$2b$10$puhzPzFDRRCQuJy1yzRYdupXydUi7Fh8HfDanw5Q37suZXUbq99CG','XhbfYkIAC1bYGhUodfJppmRCEUyGQJCZ','XhbfYkIAC1bYGhUodfJppmRCEUyGQJCZ','admin','2024-01-31 13:54:21',1);
+(1,'admin@admin.com','$2b$10$puhzPzFDRRCQuJy1yzRYdupXydUi7Fh8HfDanw5Q37suZXUbq99CG','XhbfYkIAC1bYGhUodfJppmRCEUyGQJCZ','admin','2024-01-31 13:54:21',1);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1902,7 +1902,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES
-(1,'user','lWvj6K0xI0FlSKJoyV7ak9DN0mzvKJK8','John Doe','user@user.com','$2b$10$1k2GcSGxB3MZxMP4tf1yMO0VomSilKJYbwmQYL3pjMC9xywnZ9J5W','+19876543233','Asia/Kolkata','{\"id\":20,\"title\":\"Platinum\",\"short_description\":\"This plan comes with the one-year validity and cover everything\",\"allow_tag\":1,\"allow_note\":1,\"allow_chatbot\":1,\"contact_limit\":\"10000\",\"allow_api\":1,\"is_trial\":0,\"price\":1899,\"price_strike\":\"699\",\"plan_duration_in_days\":\"365\",\"createdAt\":\"2025-04-19T08:22:57.000Z\",\"qr_account\":24,\"wa_warmer\":1,\"rest_api_qr\":1,\"instagram_inbox\":1,\"telegram_inbox\":1,\"allow_wa_forms\":1}','1809416369410',1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJsV3ZqNksweEkwRmxTS0pveVY3YWs5RE4wbXp2S0pLOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc1ODQzMzkwfQ.P05ChMzPqUzBc1hArIm0TCrRjs9eloJLMsCA9uNxlFs','2024-02-02 13:10:33','{\"tokens\":[\"dO4QUhSJXNWHzoCqVK4rrr:APA91bEMJF2hMx4GwPx_yHHuaf9iwkzhgbudWbllEoQQeHxVwL9KsLk_jJwFOfEIvYvUGyOCeahYZWoTquRvqMm-BqnEEaY0v7s_0nFDcqslZD8r9pEwg0w\"],\"other\":{\"platform\":\"iOS\",\"apnsToken\":\"B1B1497DAEC9DD597DE47AA198DC63C36F0E05E6ACF7328379899978C1389E3D\",\"disabledByUser\":true}}','1',0);
+(1,'user','lWvj6K0xI0FlSKJoyV7ak9DN0mzvKJK8','John Doe','user@user.com','$2b$10$O6rJ2hKwBTeh0.zjimhr2.CmRbOV3.LxzJmJuJQfSMPvYtThr9Su6','+19876543233','Asia/Kolkata','{\"id\":20,\"title\":\"Platinum\",\"short_description\":\"This plan comes with the one-year validity and cover everything\",\"allow_tag\":1,\"allow_note\":1,\"allow_chatbot\":1,\"contact_limit\":\"10000\",\"allow_api\":1,\"is_trial\":0,\"price\":1899,\"price_strike\":\"699\",\"plan_duration_in_days\":\"365\",\"createdAt\":\"2025-04-19T08:22:57.000Z\",\"qr_account\":24,\"wa_warmer\":1,\"rest_api_qr\":1,\"instagram_inbox\":1,\"telegram_inbox\":1,\"allow_wa_forms\":1}','1809416369410',1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJsV3ZqNksweEkwRmxTS0pveVY3YWs5RE4wbXp2S0pLOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc1ODQzMzkwfQ.P05ChMzPqUzBc1hArIm0TCrRjs9eloJLMsCA9uNxlFs','2024-02-02 13:10:33','{\"tokens\":[\"dO4QUhSJXNWHzoCqVK4rrr:APA91bEMJF2hMx4GwPx_yHHuaf9iwkzhgbudWbllEoQQeHxVwL9KsLk_jJwFOfEIvYvUGyOCeahYZWoTquRvqMm-BqnEEaY0v7s_0nFDcqslZD8r9pEwg0w\"],\"other\":{\"platform\":\"iOS\",\"apnsToken\":\"B1B1497DAEC9DD597DE47AA198DC63C36F0E05E6ACF7328379899978C1389E3D\",\"disabledByUser\":true}}','1',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

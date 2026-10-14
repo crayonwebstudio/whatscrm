@@ -17,7 +17,7 @@ services:
       # a healthcheck, compose starts db and app, and the app reconnects once
       # MariaDB finishes importing. Fresh volume forces a full re-import.
       # No real user data existed yet.
-      - whatscrm-db-v4:/var/lib/mysql
+      - whatscrm-db-v5:/var/lib/mysql
       # No entrypoint bind mount: Coolify does not honour it for the db
       # service, so the schema was never imported. The app container imports
       # database/import.sql itself on first start via scripts/init-db.js.
@@ -43,5 +43,5 @@ services:
       - whatscrm-sessions:/app/sessions
 
 volumes:
-  whatscrm-db-v4: {}
+  whatscrm-db-v5: {}
   whatscrm-sessions: {}
