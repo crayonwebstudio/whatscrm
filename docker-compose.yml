@@ -1,0 +1,47 @@
+# WhatsCRM on Coolify Cloud.
+# All secrets and config come from Coolify env vars, never from repo files.
+# Set in Coolify: PORT, DBHOST=db, DBNAME, DBUSER, DBPASS, DBPORT=3306,
+# JWTKEY, FRONTENDURI, BACKURI, STRIPE_LANG, NODE_ENV
+services:
+  db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DBPASS}
+      MARIADB_DATABASE: ${DBNAME}
+      MARIADB_USER: ${DBUSER}
+      MARIADB_PASSWORD: ${DBPASS}
+    volumes:
+      - whatscrm-db:/var/lib/mysql
+      - ./database/import.sql:/docker-entrypoint-initdb.d/import.sql:ro
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  app:
+    build: .
+    restart: always
+    environment:
+      PORT: ${PORT:-3010}
+      DBHOST: db
+      DBNAME: ${DBNAME}
+      DBUSER: ${DBUSER}
+      DBPASS: ${DBPASS}
+      DBPORT: "3306"
+      JWTKEY: ${JWTKEY}
+      FRONTENDURI: ${FRONTENDURI}
+      BACKURI: ${BACKURI}
+      STRIPE_LANG: ${STRIPE_LANG:-en}
+      NODE_ENV: ${NODE_ENV:-production}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - whatscrm-sessions:/app/sessions
+
+volumes:
+  whatscrm-db: {}
+  whatscrm-sessions: {}

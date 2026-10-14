@@ -1,0 +1,15 @@
+# Env and secrets: Coolify Cloud supplies these as env vars, never from repo
+.env
+.env.local
+*.pem
+*.key
+license.json
+# Runtime / sessions
+sessions/
+node_modules/
+# OS
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+npm-debug.log*
