@@ -15,11 +15,14 @@ services:
       - whatscrm-db:/var/lib/mysql
       - ./database/import.sql:/docker-entrypoint-initdb.d/import.sql:ro
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      # MariaDB image ships healthcheck.sh, which uses MARIADB_ROOT_PASSWORD.
+      # Plain mariadb-admin ping without credentials fails when a root password is set,
+      # so the container never became healthy and compose aborted the deploy.
+      test: ["CMD", "healthcheck.sh", "--connect"]
       interval: 10s
       timeout: 5s
-      retries: 10
-      start_period: 60s
+      retries: 15
+      start_period: 90s
 
   app:
     build: .
