@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS `whatscrm`;
+USE `whatscrm`;
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.11.14-MariaDB, for debian-linux-gnu (x86_64)
 --
