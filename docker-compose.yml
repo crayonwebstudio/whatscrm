@@ -12,21 +12,13 @@ services:
       MARIADB_USER: ${DBUSER}
       MARIADB_PASSWORD: ${DBPASS}
     volumes:
-      # v3: import.sql had no USE statement, so the entrypoint init created no
-      # tables (login failed with "something went wrong", user table missing).
-      # import.sql now starts with CREATE DATABASE + USE whatscrm. Fresh volume
-      # forces a full re-import. No real user data existed yet.
-      - whatscrm-db-v3:/var/lib/mysql
+      # v4: no healthcheck on purpose. Compose marked db unhealthy after 12s
+      # despite start_period 90s, aborting the deploy mid-import twice. Without
+      # a healthcheck, compose starts db and app, and the app reconnects once
+      # MariaDB finishes importing. Fresh volume forces a full re-import.
+      # No real user data existed yet.
+      - whatscrm-db-v4:/var/lib/mysql
       - ./database/import.sql:/docker-entrypoint-initdb.d/import.sql:ro
-    healthcheck:
-      # MariaDB image ships healthcheck.sh, which uses MARIADB_ROOT_PASSWORD.
-      # Plain mariadb-admin ping without credentials fails when a root password is set,
-      # so the container never became healthy and compose aborted the deploy.
-      test: ["CMD", "healthcheck.sh", "--connect"]
-      interval: 10s
-      timeout: 5s
-      retries: 15
-      start_period: 90s
 
   app:
     build: .
@@ -44,11 +36,10 @@ services:
       STRIPE_LANG: ${STRIPE_LANG:-en}
       NODE_ENV: ${NODE_ENV:-production}
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     volumes:
       - whatscrm-sessions:/app/sessions
 
 volumes:
-  whatscrm-db-v3: {}
+  whatscrm-db-v4: {}
   whatscrm-sessions: {}
