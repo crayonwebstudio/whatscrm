@@ -12,7 +12,11 @@ services:
       MARIADB_USER: ${DBUSER}
       MARIADB_PASSWORD: ${DBPASS}
     volumes:
-      - whatscrm-db:/var/lib/mysql
+      # v2: first deploy's DB init was interrupted by the broken healthcheck,
+      # leaving a partial schema (user, qr_campaigns, warmers missing, so login
+      # fails with "something went wrong"). Fresh volume forces a full re-import
+      # with the fixed healthcheck. No real user data existed yet.
+      - whatscrm-db-v2:/var/lib/mysql
       - ./database/import.sql:/docker-entrypoint-initdb.d/import.sql:ro
     healthcheck:
       # MariaDB image ships healthcheck.sh, which uses MARIADB_ROOT_PASSWORD.
@@ -46,5 +50,5 @@ services:
       - whatscrm-sessions:/app/sessions
 
 volumes:
-  whatscrm-db: {}
+  whatscrm-db-v2: {}
   whatscrm-sessions: {}
