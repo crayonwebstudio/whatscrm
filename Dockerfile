@@ -15,4 +15,4 @@ COPY . .
 # No .env is copied. Coolify Cloud supplies all env vars at runtime.
 # See .env.example for the list.
 EXPOSE 3010
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "node scripts/init-db.js && node server.js"]

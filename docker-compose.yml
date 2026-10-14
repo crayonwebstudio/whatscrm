@@ -18,7 +18,9 @@ services:
       # MariaDB finishes importing. Fresh volume forces a full re-import.
       # No real user data existed yet.
       - whatscrm-db-v4:/var/lib/mysql
-      - ./database/import.sql:/docker-entrypoint-initdb.d/import.sql:ro
+      # No entrypoint bind mount: Coolify does not honour it for the db
+      # service, so the schema was never imported. The app container imports
+      # database/import.sql itself on first start via scripts/init-db.js.
 
   app:
     build: .
